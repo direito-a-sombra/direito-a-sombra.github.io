@@ -1,0 +1,6 @@
+<div class="nav-container">
+  {% for pname in site.data.pages %}
+    <a style="margin: 4px 10px;" class="nav-link" href="{{ pname | relative_url }}">
+      {{ forloop.index0 }}</a>
+  {% endfor %}
+</div>
