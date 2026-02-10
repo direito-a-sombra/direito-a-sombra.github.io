@@ -1,19 +1,16 @@
 <div class="nav-container">
   <div class="nav-button-container">
-    {% assign button_count = site.data.pages | size | times: 1.0 %}
     {% for pname in site.data.pages %}
+      {% assign opacity_idx = forloop.index0 %}
 
-      {% assign selected = "" %}
       {% if page.permalink == "/" and pname == "/" %}
-        {% assign selected = "selected" %}
+        {% assign opacity_idx = "sel" %}
       {% elsif pname != "/" and page.permalink contains pname %}
-        {% assign selected = "selected" %}
+        {% assign opacity_idx = "sel" %}
       {% endif %}
 
-      {% assign pct = forloop.index | divided_by: button_count %}
-      <a class="nav-link" href="{{ pname | relative_url }}">
-        <div class="nav-square {{ selected }}" style="opacity: {{ pct }};"></div>
-        <div class="nav-square-border {{ selected }}"></div>
+      <a class="nav-link opacity-{{ opacity_idx }}" href="{{ pname | relative_url }}">
+        <!-- <div class="nav-square" ></div> -->
       </a>
     {% endfor %}
   </div>

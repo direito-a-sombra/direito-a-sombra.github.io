@@ -1,6 +1,6 @@
 title: Direito à Sombra
 
-baseurl: '/'
+baseurl: ''
 permalink: :title/
 
 include: ['_pages']
