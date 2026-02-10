@@ -29,6 +29,36 @@ html, body {
   font-family: "Cera";
 }
 
+// Single-page slider
+body.slider-body {
+  overflow: hidden;
+}
+
+.slider-page {
+  display: flex;
+  width: 700vw;
+  will-change: transform;
+}
+
+.slider-page .panel {
+  width: 100vw;
+  min-height: 100vh;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.panel-inner {
+  text-align: center;
+  padding: 2rem;
+}
+
+.panel-title {
+  margin-bottom: 1rem;
+}
+
 @media (max-width: 768px) {
   :root {
     font-size: 13px;
@@ -58,17 +88,13 @@ html, body {
       height: var(--button-size);
       background-color: var(--hl-color);
 
-      &.opacity {
-        @mixin opacity-val($in, $in_range, $out_min, $out_max: 1.0) {
-          opacity: $in / $in_range * ($out_max - $out_min) + $out_min;
-        }
-
-        @for $idx from 0 through 6 {
-          &-#{$idx} {
-            @include opacity-val($idx, 6, 0.333, 1.0);
-          }
-        }
-      }
+      &.opacity-0 { opacity: 0.333; }
+      &.opacity-1 { opacity: 0.444; }
+      &.opacity-2 { opacity: 0.556; }
+      &.opacity-3 { opacity: 0.667; }
+      &.opacity-4 { opacity: 0.778; }
+      &.opacity-5 { opacity: 0.889; }
+      &.opacity-6 { opacity: 1; }
 
       &.opacity-sel {
         opacity: 1;

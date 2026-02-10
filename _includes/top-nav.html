@@ -1,17 +1,8 @@
 <div class="nav-container">
   <div class="nav-button-container">
     {% for pname in site.data.pages %}
-      {% assign opacity_idx = forloop.index0 %}
-
-      {% if page.permalink == "/" and pname == "/" %}
-        {% assign opacity_idx = "sel" %}
-      {% elsif pname != "/" and page.permalink contains pname %}
-        {% assign opacity_idx = "sel" %}
-      {% endif %}
-
-      <a class="nav-link opacity-{{ opacity_idx }}" href="{{ pname | relative_url }}">
-        <!-- <div class="nav-square" ></div> -->
-      </a>
+      {% assign panel_idx = forloop.index0 %}
+      <a class="nav-link js-panel-link" href="#" data-panel-index="{{ panel_idx }}" aria-label="Go to {{ pname }}"></a>
     {% endfor %}
   </div>
 </div>

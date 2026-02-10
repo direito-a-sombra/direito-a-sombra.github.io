@@ -1,0 +1,15 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% include head.html %}
+  </head>
+  <body class="slider-body">
+    {% include top-nav.html %}
+    <div id="page" class="slider-page">
+      {{ content }}
+    </div>
+    <script src="{{ 'js/main.js' | relative_url }}"></script>
+  </body>
+</html>
