@@ -35,6 +35,11 @@ html, body {
   }
 }
 
+// Page title (home, game, map, etc.)
+.page-title {
+  text-align: center;
+}
+
 // TOP-NAV
 .nav-container {
   display: block;
@@ -72,4 +77,65 @@ html, body {
       }
     }
   }
+}
+
+// HOME - SHADE TEXT
+.home-shade {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 80px);
+  padding: 12px 20px;
+  box-sizing: border-box;
+}
+
+.home-shade .frame {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.home-shade .text {
+  margin: 0;
+  text-transform: uppercase;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  font-size: clamp(20px, 3.2vw, 57px);
+  max-width: 900px;
+  transition: opacity 400ms ease;
+}
+
+.home-shade .highlight {
+  background: none;
+  border: none;
+  text-decoration: none;
+  font-weight: 800;
+  color: var(--hl-color2);
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
+}
+
+.home-shade .highlight:focus-visible {
+  outline: 2px solid var(--hl-color2);
+  outline-offset: 6px;
+}
+
+.home-shade .sentence {
+  display: inline;
+  transition: opacity 400ms ease;
+}
+
+body.detail-open .home-shade .sentence {
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.detail-open .home-shade .sentence.active {
+  opacity: 1;
+  position: relative;
+  z-index: 2;
+  pointer-events: auto;
 }
