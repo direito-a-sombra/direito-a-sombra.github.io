@@ -1,0 +1,37 @@
+---
+---
+
+// TOP-NAV
+.nav-container {
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  --button-size: 20px;
+  --button-gap: 10px;
+
+  .nav-button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 0 var(--button-gap);
+
+    .nav-link {
+      width: var(--button-size);
+      height: var(--button-size);
+      background-color: var(--color-hl-0);
+
+      &.opacity-0 { opacity: 0.33; }
+      &.opacity-1 { opacity: 0.44; }
+      &.opacity-2 { opacity: 0.55; }
+      &.opacity-3 { opacity: 0.66; }
+      &.opacity-4 { opacity: 0.77; }
+      &.opacity-5 { opacity: 0.88; }
+      &.opacity-6 { opacity: 1; }
+
+      &.opacity-sel {
+        opacity: 1;
+        background-color: var(--bg-color-hl);
+      }
+    }
+  }
+}
