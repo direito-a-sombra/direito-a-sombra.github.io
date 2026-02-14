@@ -10,9 +10,9 @@
 }
 
 :root {
-  --bg-color: #eee;
-  --bg-color-hl: #eaeaea;
-  --txt-color: #222;
+  --color-bg: #eee;
+  --color-bg-hl: #eaeaea;
+  --color-text: #222;
   --color-hl-0: #c9da2a;
   --color-hl-1: #cdf400;
   --color-hl-2: #34541f;
@@ -27,8 +27,8 @@
 }
 
 html, body {
-  background-color: var(--bg-color);
-  color: var(--txt-color);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   font-family: "Cera";
 }
 
@@ -45,7 +45,7 @@ body.slider-body {
 
 .slider-page .panel {
   width: 100vw;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 40px);
   display: flex;
   flex-shrink: 0;
   justify-content: center;
