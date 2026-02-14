@@ -75,6 +75,9 @@ function clearSelectedImage() {
   infoEl.classList.remove("show");
   boxesEl.innerHTML = "";
   setTimeout(() => infoEl.innerHTML = "", 100);
+  setTimeout(() => {
+    selectedImage.scrollIntoView({ behavior: "smooth" });
+  }, 250);
 }
 
 function drawBoxes(el) {
@@ -108,10 +111,14 @@ function handleImageClick(evt) {
   if (evt.currentTarget != selectedImage) {
     selectedImage = evt.currentTarget;
     setTimeout(() => {
-      infoEl.appendChild(createInfoEl(stops[selectedImage.dataset.id]));
+      const stop = stops.find(s => s.id == selectedImage.dataset.id);
+      if (!stop) return;
+      infoEl.appendChild(createInfoEl(stop));
       infoEl.classList.add("show");
       selectedImage.classList.add("selected");
       drawBoxes(selectedImage);
+      console.log(selectedImage);
+      selectedImage.scrollIntoView({ behavior: "smooth" });
     }, 250);
   } else {
     selectedImage = null;
@@ -180,7 +187,7 @@ function loadImages(stops) {
 
   stops.forEach((stop, idx) => {
     const itemEl = document.createElement("div");
-    itemEl.classList.add("item-container", `col-${idx % 5}`);
+    itemEl.classList.add("item-container", `col-${idx % 6}`);
     itemEl.dataset.id = stop.id;
 
     const imgEl = createImageEl(stop);
