@@ -1,0 +1,48 @@
+---
+---
+
+.panel-inner {
+  padding: 2rem;
+}
+
+.panel-title {
+  margin-bottom: 1rem;
+}
+
+.sub-section {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  text-align: left;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+
+  .sub-section--text {
+    flex-grow: 1;
+    max-width: 33%;
+
+    p {
+      margin: 1.5rem 0;
+    }
+
+    li {
+      margin-left: 1rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .sub-section--image {
+    flex-grow: 2;
+
+    .image-container {
+      max-width: 400px;
+      aspect-ratio: 1/1;
+      margin: 0 auto;
+
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+}
