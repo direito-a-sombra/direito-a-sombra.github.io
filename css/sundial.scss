@@ -3,6 +3,8 @@
 
 .sundial-view {
   width: 100%;
+  --color-light: var(--color-hl-0);
+  --color-shade: var(--color-hl-2);
 
   .sundial-menu {
     display: flex;

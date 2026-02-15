@@ -245,5 +245,12 @@ function renderGrid() {
 
 elUpdateBtn.addEventListener("click", renderGrid);
 
-// initial render
-setTimeout(renderGrid, 5);
+document.addEventListener('DOMContentLoaded', () => {
+  // Initial colors
+  const styles = window.getComputedStyle(elSundialGrid);
+  elColorL.value = styles.getPropertyValue("--color-light");
+  elColorS.value = styles.getPropertyValue("--color-shade");
+
+  // Initial render
+  setTimeout(renderGrid, 5);
+});
