@@ -21,7 +21,7 @@ function filterImages() {
     const elObjs = id2objsets[id];
 
     if (selectedObjects.size == 0) {
-      el.classList.remove("active");
+      el.classList.add("active");
       el.classList.remove("inactive");
     } else if (selectedObjects.difference(elObjs).size != 0) {
       el.classList.add("inactive");
@@ -144,7 +144,7 @@ function createImageEl(stop) {
 }
 
 function createInfoEl(stop) {
-  const stop_info_str = `${stop.id}:<br>${stop.address} - ${stop.neighborhood} (${stop.lat}, ${stop.lon}) `;
+  const stop_info_str = `${stop.address} - ${stop.neighborhood}<br>(${stop.lat}, ${stop.lon}) `;
   const searchTerms = [
     `${stop.address}, fortaleza, brazil`,
     `${stop.lat},${stop.lon}`,
@@ -154,10 +154,16 @@ function createInfoEl(stop) {
   infoEl.classList.add("info-wrapper");
   infoEl.innerHTML = stop_info_str;
 
-  const mEl = document.createElement("a");
+  let mEl = document.createElement("a");
   mEl.setAttribute("href", `https://www.google.com/maps/search/${searchTerms[0]}/`);
   mEl.setAttribute("target", "_blank");
   mEl.innerHTML = "map";
+  infoEl.appendChild(mEl);
+
+  mEl = document.createElement("a");
+  mEl.setAttribute("href", `https://www.google.com/maps/search/${searchTerms[0]}/`);
+  mEl.setAttribute("target", "_blank");
+  mEl.innerHTML = `<br>${stop.lat}, ${stop.lon}`;
   infoEl.appendChild(mEl);
 
   return infoEl;
@@ -214,5 +220,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     loadImages(stops);
     createMenu(labels);
+    filterImages();
   });
 });
