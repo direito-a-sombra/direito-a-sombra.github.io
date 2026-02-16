@@ -243,13 +243,26 @@ function renderGrid() {
   }
 }
 
-elUpdateBtn.addEventListener("click", renderGrid);
-
 document.addEventListener('DOMContentLoaded', () => {
   // Initial colors
   const styles = window.getComputedStyle(elSundialGrid);
   elColorL.value = styles.getPropertyValue("--color-light");
   elColorS.value = styles.getPropertyValue("--color-shade");
+
+  elUpdateBtn.addEventListener("click", renderGrid);
+
+  [
+    elSundialMonthMin,
+    elSundialMonthMax,
+    elSundialMonthStep,
+    elSundialHourMin,
+    elSundialHourMax,
+    elSundialHourStep,
+    elPselMin,
+    elPselMax,
+    elPole,
+    elAbar,
+  ].forEach(el => el.addEventListener("keydown", (evt) => evt.stopPropagation()));
 
   // Initial render
   setTimeout(renderGrid, 5);

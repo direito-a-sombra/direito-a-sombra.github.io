@@ -258,5 +258,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const addressEl = document.getElementById("bus-address-input");
     addressEl.addEventListener("input", () => debounceFilterImages());
+    addressEl.addEventListener("keydown", (evt) => evt.stopPropagation());
   });
 });

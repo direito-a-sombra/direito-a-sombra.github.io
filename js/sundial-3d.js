@@ -196,6 +196,7 @@ function animate() {
 
 //////// Events
 window.addEventListener("resize", resize);
+[UI.date, UI.time, UI.pole].forEach(el => el.addEventListener("keydown", (evt) => evt.stopPropagation()));
 ["input", "change"].forEach(ev => { [UI.date, UI.time, UI.pole].forEach(el => el.addEventListener(ev, update)) });
 
 //////// Init
