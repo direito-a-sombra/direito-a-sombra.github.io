@@ -106,8 +106,8 @@ function createLabel(text, color, pos, rot) {
 const GND = new THREE.GridHelper(200, 40, 0x223b55, 0x0f1b28);
 const sunLight = new THREE.DirectionalLight(0xffffff, 0.7);
 
-const axN = new THREE.ArrowHelper(new THREE.Vector3(0, 0, -1), new THREE.Vector3(0, 0.01, 0), 3, 0x6aa5ff, 0.2, 0.1);
-const axE = new THREE.ArrowHelper(new THREE.Vector3(+1, 0, 0), new THREE.Vector3(0, 0.01, 0), 3, 0x89c46a, 0.2, 0.1);
+const axS = new THREE.ArrowHelper(new THREE.Vector3(0, 0, 1), new THREE.Vector3(0, 0.01, 0), 3, 0x6aa5ff, 0.2, 0.1);
+const axE = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(0, 0.01, 0), 3, 0x89c46a, 0.2, 0.1);
 const sunArrow = new THREE.ArrowHelper(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 0.01, 0), 3, 0xffe28a, 0.2, 0.1); // direção da LUZ
 
 const poleMat = new THREE.MeshStandardMaterial({ color: 0xffffff, metalness: 0.2, roughness: 0.6 });
@@ -118,11 +118,11 @@ let shadow = null;
 
 scene.add(new THREE.AmbientLight(0xffffff, 0.6));
 scene.add(GND);
-scene.add(axN);
+scene.add(axS);
 scene.add(axE);
 scene.add(sunLight);
 scene.add(sunArrow);
-scene.add(createLabel("NORTH", "#6aa5ff", new THREE.Vector3(-0.15, 0, -1.5), Math.PI / 2));
+scene.add(createLabel("SOUTH", "#6aa5ff", new THREE.Vector3(-0.15, 0, 1.5), -Math.PI / 2));
 scene.add(createLabel("EAST", "#89c46a", new THREE.Vector3(1.5, 0 , -0.15), 0));
 
 function setPole(h) {

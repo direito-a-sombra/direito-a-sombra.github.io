@@ -32,6 +32,11 @@
       font-size: 14px;
     }
 
+    input[type="date"],
+    input[type="time"] {
+      font-family: Cera;
+    }
+
     input[type="color"] {
       padding: 4px;
       width: 100px;

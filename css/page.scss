@@ -49,4 +49,13 @@
       aspect-ratio: 1/1;
     }
   }
+
+  .wide-image-container {
+    width: 100%;
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
 }

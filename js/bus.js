@@ -192,16 +192,10 @@ function createInfoEl(stop) {
   infoEl.classList.add("info-wrapper");
   infoEl.innerHTML = stop_info_str;
 
-  let mEl = document.createElement("a");
+  const mEl = document.createElement("a");
   mEl.setAttribute("href", `https://www.google.com/maps/search/${searchTerms[0]}/`);
   mEl.setAttribute("target", "_blank");
   mEl.innerHTML = "map";
-  infoEl.appendChild(mEl);
-
-  mEl = document.createElement("a");
-  mEl.setAttribute("href", `https://www.google.com/maps/search/${searchTerms[0]}/`);
-  mEl.setAttribute("target", "_blank");
-  mEl.innerHTML = `<br>${stop.lat}, ${stop.lon}`;
   infoEl.appendChild(mEl);
 
   return infoEl;
@@ -214,6 +208,7 @@ function createMenu(labels) {
     buttEl.addEventListener("click", handleMenuToggle);
     menuEl.appendChild(buttEl);
   });
+  menuEl.appendChild(menuEl.firstElementChild);
 }
 
 function loadImages(stops) {
