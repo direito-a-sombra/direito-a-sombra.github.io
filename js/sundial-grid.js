@@ -112,24 +112,24 @@ function calculateLeftArea(q, p, ta, tb) {
 
 const elSundialGrid = document.getElementById("sundial-grid-container");
 
-const elSundialMonthMin = document.getElementById("sundial-month-min");
-const elSundialMonthMax = document.getElementById("sundial-month-max");
-const elSundialMonthStep = document.getElementById("sundial-month-step");
+const elSundialMonthMin = document.getElementById("sundial-grid-month-min");
+const elSundialMonthMax = document.getElementById("sundial-grid-month-max");
+const elSundialMonthStep = document.getElementById("sundial-grid-month-step");
 
-const elSundialHourMin = document.getElementById("sundial-hour-min");
-const elSundialHourMax = document.getElementById("sundial-hour-max");
-const elSundialHourStep = document.getElementById("sundial-hour-step");
+const elSundialHourMin = document.getElementById("sundial-grid-hour-min");
+const elSundialHourMax = document.getElementById("sundial-grid-hour-max");
+const elSundialHourStep = document.getElementById("sundial-grid-hour-step");
 
 const elPselMin = document.getElementById("psel-min");
 const elPselMax = document.getElementById("psel-max");
 
-const elHPole = document.getElementById("h_pole");
+const elPole = document.getElementById("sundial-grid-pole");
 const elAbar = document.getElementById("a_bar");
 
 const elColorL = document.getElementById("l_color");
 const elColorS = document.getElementById("s_color");
 
-const elUpdateBtn  = document.getElementById("sundial-update-button");
+const elUpdateBtn  = document.getElementById("sundial-grid-update-button");
 
 // NOTE: this can be improved with binary search on ordered arrays
 function findClosestIdx(vals, val) {
@@ -155,7 +155,7 @@ const MONTHS = ["", "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep
 function renderGrid() {
   const [y, d, mm] = [2026, 1, 0];
 
-  const hPole = Number(elHPole.value);
+  const poleH = Number(elPole.value);
   const abar = clamp(Number(elAbar.value), 0.0, 1.0);
 
   const pSelMin = clamp(Number(elPselMin.value), PMIN, PMAX);
@@ -203,7 +203,7 @@ function renderGrid() {
       elGridPlot.style.width = `${100 / mCnt}%`;
       elGridRow.appendChild(elGridPlot);
 
-      const out = computeAlphaBeta(y, m, d, hh, mm, hPole);
+      const out = computeAlphaBeta(y, m, d, hh, mm, poleH);
       if (!isFinite(out.alpha_rad) || !isFinite(out.beta_rad)) continue;
 
       const ta = Math.tan(out.alpha_rad);
@@ -224,7 +224,7 @@ function renderGrid() {
       }
 
       if (Math.abs(leftArea - abar) > 0.05) {
-        console.log(`Oops. Wanted ${abar}, but got ${leftArea}.`, y, m, d, hh, mm, hPole);
+        console.log(`Oops. Wanted ${abar}, but got ${leftArea}.`, y, m, d, hh, mm, poleH);
       }
 
       const elShape = document.createElement("div");
