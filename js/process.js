@@ -79,7 +79,7 @@ function loadProcessImages(images) {
 
   images.forEach((img, idx) => {
     const itemEl = document.createElement("div");
-    itemEl.classList.add("item-container", "active", `col-${idx % 6}`);
+    itemEl.classList.add("item-container", `col-${idx % 6}`);
     itemEl.dataset.id = img.id;
 
     const imgEl = createProcessImageEl(img);

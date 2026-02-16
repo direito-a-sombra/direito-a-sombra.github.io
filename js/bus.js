@@ -5,30 +5,69 @@ const stops = [];
 const boxes = {};
 const labels = [];
 const id2objsets = {};
+const id2address = {};
 
 let selectedImage;
 let selectedObjects = new Set();
+
+let filterTimeOutId = null;
 
 function fetchJson(url) {
   return fetch(url).then(res => res.json());
 }
 
+function normalizeString(str) {
+  const clean = str.replace(/[ ]{2,}/, " ").trim().toLowerCase();
+  return clean.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function idsFromAddress() {
+  const addressEl = document.getElementById("bus-address-input");
+  const searchText = normalizeString(addressEl.value);
+  if (searchText.length < 4) return Object.keys(id2address);
+  const searchWords = searchText.split(" ").filter(w => w.length > 3);
+
+  const ids = [];
+  for (const [id, words] of Object.entries(id2address)) {
+    for (const word of words) {
+      if (searchText.includes(word)) {
+        ids.push(id);
+        break;
+      }
+
+      for (const searchWord of searchWords) {
+        if (word.includes(searchWord)) {
+          ids.push(id);
+          break;
+        }
+      }
+      if (ids.includes(id)) break;
+    }
+  }
+  return ids;
+}
+
+function debounceFilterImages() {
+  if (filterTimeOutId) clearTimeout(filterTimeOutId);
+  filterTimeOutId = setTimeout(filterImages, 200);
+}
+
 function filterImages() {
   const tableEl = document.getElementById("bus-table");
+  const addressIds = idsFromAddress();
+  const noObject = selectedObjects.size == 0;
+  const noSearch = addressIds.length == Object.keys(id2address).length;
 
   Array.from(tableEl.children).forEach(el => {
     const id = el.dataset.id;
     const elObjs = id2objsets[id];
+    const objectMatch = (!noObject) && (selectedObjects.difference(elObjs).size == 0);
+    const addressMatch = (!noSearch) && addressIds.includes(id);
 
-    if (selectedObjects.size == 0) {
-      el.classList.add("active");
-      el.classList.remove("inactive");
-    } else if (selectedObjects.difference(elObjs).size != 0) {
-      el.classList.add("inactive");
-      el.classList.remove("active");
+    if ((noObject || objectMatch) && (noSearch || addressMatch)) {
+      el.classList.remove("disabled");
     } else {
-      el.classList.add("active");
-      el.classList.remove("inactive");
+      el.classList.add("disabled");
     }
   });
 }
@@ -215,10 +254,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     stops.forEach(stop => {
       id2objsets[stop.id] = new Set(stop.objects);
+      id2address[stop.id] = normalizeString(stop.address.split(",")[0]).split(" ").filter(w => w.length > 3);
     });
 
     loadImages(stops);
     createMenu(labels);
     filterImages();
+
+    const addressEl = document.getElementById("bus-address-input");
+    addressEl.addEventListener("input", () => debounceFilterImages());
   });
 });
