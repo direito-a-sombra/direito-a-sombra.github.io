@@ -44,7 +44,6 @@ function handleMenuToggle(evt) {
 
   if (selectedImage) {
     clearSelectedImage();
-    selectedImage = null;
   };
 
   filterImages();
@@ -77,7 +76,8 @@ function clearSelectedImage() {
   setTimeout(() => infoEl.innerHTML = "", 100);
   setTimeout(() => {
     selectedImage.scrollIntoView({ behavior: "smooth" });
-  }, 250);
+    selectedImage = null;
+  }, 240);
 }
 
 function drawBoxes(el) {
@@ -109,19 +109,18 @@ function handleImageClick(evt) {
   };
 
   if (evt.currentTarget != selectedImage) {
-    selectedImage = evt.currentTarget;
+    const cTarget = evt.currentTarget;
     setTimeout(() => {
+      selectedImage = cTarget;
       const stop = stops.find(s => s.id == selectedImage.dataset.id);
       if (!stop) return;
+      infoEl.innerHTML = "";
       infoEl.appendChild(createInfoEl(stop));
       infoEl.classList.add("show");
       selectedImage.classList.add("selected");
       drawBoxes(selectedImage);
-      console.log(selectedImage);
       selectedImage.scrollIntoView({ behavior: "smooth" });
-    }, 250);
-  } else {
-    selectedImage = null;
+    }, 260);
   }
 }
 
