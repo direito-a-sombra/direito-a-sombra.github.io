@@ -5,9 +5,10 @@
 .nav-container {
   display: block;
   width: 100%;
-  padding: 10px 0;
-  --button-size: 20px;
-  --button-gap: 10px;
+
+  --button-size: 1.33rem;
+  --button-gap: calc(var(--button-size) * 0.5);
+  padding: var(--button-gap) 0;
 
   .nav-button-container {
     display: flex;
