@@ -4,3 +4,4 @@ json/
 data/
 .jekyll-cache/
 _site/
+!assets/data

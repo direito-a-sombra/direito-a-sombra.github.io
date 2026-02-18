@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const setNavActive = (index) => {
       panelLinks.forEach((link, i) => {
         link.classList.toggle("opacity-sel", i === index);
-        link.classList.remove("opacity-0", "opacity-1", "opacity-2", "opacity-3", "opacity-4", "opacity-5", "opacity-6");
         if (i !== index) link.classList.add(`opacity-${Math.min(i, 6)}`);
       });
     };
@@ -53,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     panelLinks.forEach((link) => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
-        const idx = parseInt(link.getAttribute("data-panel-index"), 10);
+        const idx = parseInt(link.dataset.panelIndex);
         if (!isNaN(idx)) go(idx);
       });
     });

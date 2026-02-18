@@ -10,22 +10,25 @@
 }
 
 :root {
-  --bg-color: #eee;
-  --bg-color-l: #ccc;
-  --bg-color-hl: #aaa;
-  --txt-color: #444;
-  --txt-color-l: #333;
-  --txt-color-hl: #222;
-  --text-color-err: #e44;
-  --hl-color: #cbdc29;
-  --hl-color2: #cdf400;
-  --menu-width: 300px;
+  --color-bg: #fff;
+  --color-bg-hl: #fafafa;
+  --color-text: #222;
+  --color-hl-0: #edff00;
+  --color-hl-1: #4c7f2a;
+  --color-hl-2: #222324;
+  --color-hl-3: #929293;
   font-size: 15px;
 }
 
+@media (max-width: 768px) {
+  :root {
+    font-size: 13px;
+  }
+}
+
 html, body {
-  background-color: var(--bg-color);
-  color: var(--txt-color);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   font-family: "Cera";
 }
 
@@ -42,67 +45,15 @@ body.slider-body {
 
 .slider-page .panel {
   width: 100vw;
-  min-height: 100vh;
-  flex-shrink: 0;
+  height: calc(100vh - 40px);
   display: flex;
-  align-items: center;
+  flex-shrink: 0;
   justify-content: center;
-  box-sizing: border-box;
+  overflow-y: scroll;
+  scrollbar-width: none;
 }
-
-.panel-inner {
-  text-align: center;
-  padding: 2rem;
-}
-
-.panel-title {
-  margin-bottom: 1rem;
-}
-
-@media (max-width: 768px) {
-  :root {
-    font-size: 13px;
-  }
-}
-
-// Page title (home, game, map, etc.)
-.page-title {
-  text-align: center;
-}
-
-// TOP-NAV
-.nav-container {
-  display: block;
-  width: 100%;
-  padding: 10px 0;
-  --button-size: 32px;
-
-  .nav-button-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 0 12px;
-
-    .nav-link {
-      width: var(--button-size);
-      height: var(--button-size);
-      background-color: var(--hl-color);
-
-      &.opacity-0 { opacity: 0.333; }
-      &.opacity-1 { opacity: 0.444; }
-      &.opacity-2 { opacity: 0.556; }
-      &.opacity-3 { opacity: 0.667; }
-      &.opacity-4 { opacity: 0.778; }
-      &.opacity-5 { opacity: 0.889; }
-      &.opacity-6 { opacity: 1; }
-
-      &.opacity-sel {
-        opacity: 1;
-        background-color: var(--bg-color);
-        border: #e8e8e8 1px solid;
-      }
-    }
-  }
+.slider-page .panel::-webkit-scrollbar {
+  display: none;
 }
 
 // HOME - SHADE TEXT
@@ -110,9 +61,8 @@ body.slider-body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: calc(100vh - 80px);
+  height: 100%;
   padding: 12px 20px;
-  box-sizing: border-box;
 }
 
 .home-shade .frame {
@@ -129,6 +79,8 @@ body.slider-body {
   line-height: 1.2;
   letter-spacing: 0.02em;
   font-size: clamp(20px, 3.2vw, 57px);
+  font-weight: 600;
+  text-align: justify;
   max-width: 900px;
   transition: opacity 400ms ease;
 }
@@ -138,14 +90,14 @@ body.slider-body {
   border: none;
   text-decoration: none;
   font-weight: 800;
-  color: var(--hl-color2);
+  color: var(--color-hl-0);
   padding: 0;
   cursor: pointer;
   font: inherit;
 }
 
 .home-shade .highlight:focus-visible {
-  outline: 2px solid var(--hl-color2);
+  outline: 2px solid var(--color-hl-0);
   outline-offset: 6px;
 }
 

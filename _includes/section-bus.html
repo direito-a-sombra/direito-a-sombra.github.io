@@ -1,4 +1,61 @@
 <div class="panel-inner">
-  <h2 class="panel-title">Bus</h2>
-  <p>Content for Bus.</p>
+  <h2 class="panel-title">Who Needs Shade?</h2>
+
+  <div class="sub-section">
+    <div class="sub-section-text">
+      <p>
+        The excess of light reveals climate injustices. Why haven't we built cities where shadow (or shade!)
+        is a public infrastructure, and a social environmental right? Brazilian modern cities (and many cities
+        around the world) were not planned for people, for animals, nor for rivers or trees.
+      </p>
+
+      <p>
+        Ms. Liduina, the woman in this photo, hides behind a thin pole shade while waiting for the bus.
+        She commutes daily. Like many other workers. Or students. Kids, elderly.
+      </p>
+
+      <p>
+        What if urban infrastructure were reimagined through living systems — if a specific tree species
+        signaled a bus stop, replacing the built shelter (when there is one) with shade itself?
+      </p>
+
+      <p>
+        That image served as the primary reference for this experimental research tool. Based on it,
+        together with a city list, we developed a platform to scan all bus stops in Fortaleza using
+        Google Street View, applying machine learning to analyze people, trees, and shadows in more than 4,000 images.
+      </p>
+
+      <p>
+        Do not hesitate to explore the bus stops in Fortaleza and draw your own conclusions.
+      </p>
+    </div>
+
+    <div class="sub-section-image">
+      <div class="image-container">
+        <img src="./assets/images/headers/bus.jpg"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="sub-section">
+    <div class="bus-view">
+      <div class="bus-menu-wrapper">
+        <div class="bus-menu" id="bus-menu">
+          <div class="bus-search-container">
+            <label for="bus-address-input">Address</label>
+            <input id="bus-address-input" type="text" />
+          </div>
+        </div>
+      </div>
+
+      <div class="bus-table" id="bus-table"></div>
+
+      <div class="bus-image-info-wrapper">
+        <div class="bus-image-info" id="bus-image-info"></div>
+      </div>
+    </div>
+  </div>
+
+  <link rel="stylesheet" href="{{ 'css/bus.css' | relative_url }}">
+  <script src="./js/bus.js"></script>
 </div>
