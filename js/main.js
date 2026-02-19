@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
     lock = true;
     active = next;
     page.style.transform = `translateX(-${active * 100}vw)`;
-    panelHome.style.left = `${active * 100}vw`;
+    panelHome.style.transform = `translateX(${active * 100}vw)`;
     window.location.hash = active > 0 ? `/${idx2key[active]}` : "";
     setNavActive(active);
     setTimeout(() => (lock = false), duration);
@@ -80,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  page.style.transition = `transform ${duration}ms ease`;
   setNavActive(0);
 
   // —— Shade text (home panel highlights) ——
@@ -100,11 +99,13 @@ document.addEventListener("DOMContentLoaded", () => {
       go(0);
       return;
     }
+
     document.querySelectorAll(".sentence.active").forEach((node) => node.classList.remove("active"));
     const activeSentence = text.querySelector(`.sentence[data-key="${key}"]`);
     if (activeSentence) activeSentence.classList.add("active");
     activeKey = key;
     document.body.classList.add("detail-open");
+
     if (key === "fortaleza") {
       window.open(FORTALEZA_URL, "_blank", "noopener, noreferrer");
     } else {

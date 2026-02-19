@@ -17,6 +17,7 @@
   --color-hl-1: #4c7f2a;
   --color-hl-2: #222324;
   --color-hl-3: #929293;
+  --slide-transition: transform 650ms ease;
   font-size: 15px;
 }
 
@@ -41,6 +42,7 @@ body.slider-body {
   display: flex;
   width: 700vw;
   will-change: transform;
+  transition: var(--slide-transition);
 }
 
 .slider-page .panel {
@@ -60,9 +62,9 @@ body.slider-body {
   position: relative;
   left: 0;
   pointer-events: none;
-  transition: left 650ms ease;
+  will-change: transform;
+  transition: var(--slide-transition);
   z-index: 20;
-  will-change: left;
 }
 
 // HOME - SHADE TEXT
