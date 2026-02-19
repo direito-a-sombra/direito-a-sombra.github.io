@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ? Array.from(page.querySelectorAll(".panel"))
     : [];
   const panelLinks = document.querySelectorAll(".js-panel-link");
+  const panelHome = document.getElementById("panel-home");
 
   if (panels.length > 0) {
     let active = 0;
@@ -24,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       lock = true;
       active = next;
       page.style.transform = `translateX(-${active * 100}vw)`;
+      panelHome.style.left = `${active * 100}vw`;
       setNavActive(active);
       setTimeout(() => (lock = false), duration);
     };

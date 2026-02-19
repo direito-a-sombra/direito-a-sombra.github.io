@@ -56,13 +56,20 @@ body.slider-body {
   display: none;
 }
 
+.slider-page .panel.float {
+  position: relative;
+  left: 0;
+  pointer-events: none;
+  transition: left 650ms ease;
+  z-index: 20;
+}
+
 // HOME - SHADE TEXT
 .home-shade {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
-  padding: 12px 20px;
 }
 
 .home-shade .frame {
@@ -78,10 +85,10 @@ body.slider-body {
   text-transform: uppercase;
   line-height: 1.2;
   letter-spacing: 0.02em;
-  font-size: clamp(20px, 3.2vw, 57px);
+  font-size: clamp(40px, 3.8vw, 52px);
   font-weight: 600;
   text-align: justify;
-  max-width: 900px;
+  max-width: 75%;
   transition: opacity 400ms ease;
 }
 
@@ -104,6 +111,10 @@ body.slider-body {
 .home-shade .sentence {
   display: inline;
   transition: opacity 400ms ease;
+
+  button {
+    pointer-events: auto;
+  }
 }
 
 body.detail-open .home-shade .sentence {
@@ -114,6 +125,11 @@ body.detail-open .home-shade .sentence {
 body.detail-open .home-shade .sentence.active {
   opacity: 1;
   position: relative;
-  z-index: 2;
   pointer-events: auto;
+
+  background-color: var(--color-hl-0);
+
+  button {
+    color: var(--color-bg);
+  }
 }
