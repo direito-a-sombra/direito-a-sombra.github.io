@@ -62,6 +62,7 @@ body.slider-body {
   pointer-events: none;
   transition: left 650ms ease;
   z-index: 20;
+  will-change: left;
 }
 
 // HOME - SHADE TEXT

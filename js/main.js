@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
     active = next;
     page.style.transform = `translateX(-${active * 100}vw)`;
     panelHome.style.left = `${active * 100}vw`;
-    window.location.hash = `/${idx2key[index]}`;
+    window.location.hash = active > 0 ? `/${idx2key[active]}` : "";
     setNavActive(active);
     setTimeout(() => (lock = false), duration);
   };
