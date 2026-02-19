@@ -32,7 +32,7 @@
 
     <div class="sub-section-image">
       <div class="image-container">
-        <img src="./assets/images/headers/bus.jpg"/>
+        <img src="{{ 'assets/images/headers/bus.jpg' | relative_url }}"/>
       </div>
     </div>
   </div>
@@ -57,5 +57,5 @@
   </div>
 
   <link rel="stylesheet" href="{{ 'css/bus.css' | relative_url }}">
-  <script src="./js/bus.js"></script>
+  <script src="{{ 'js/bus.js' | relative_url }}"></script>
 </div>

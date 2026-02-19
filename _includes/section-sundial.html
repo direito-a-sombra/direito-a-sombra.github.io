@@ -28,7 +28,7 @@
 
     <div class="sub-section-image">
       <div class="image-container">
-        <img src="./assets/images/headers/sundial.jpg"/>
+        <img src="{{ 'assets/images/headers/sundial.jpg' | relative_url }}"/>
       </div>
     </div>
   </div>
@@ -124,7 +124,7 @@
   </div>
 
   <link rel="stylesheet" href="{{ 'css/sundial.css' | relative_url }}">
-  <script src="./js/sundial-math.js"></script>
-  <script src="./js/sundial-3d.js" type="module"></script>
-  <script src="./js/sundial-grid.js"></script>
+  <script src="{{ 'js/sundial-math.js' | relative_url }}"></script>
+  <script src="{{ 'js/sundial-3d.js' | relative_url }}" type="module"></script>
+  <script src="{{ 'js/sundial-grid.js' | relative_url }}"></script>
 </div>
