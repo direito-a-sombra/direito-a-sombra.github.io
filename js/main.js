@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     ? Array.from(page.querySelectorAll(".panel"))
     : [];
   const panelLinks = document.querySelectorAll(".nav-link");
-  const panelHome = document.getElementById("panel-home");
 
   const key2idx = {};
   const idx2key = {};
@@ -45,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
     lock = true;
     active = next;
     page.style.transform = `translateX(-${active * 100}vw)`;
-    panelHome.style.transform = `translateX(${active * 100}vw)`;
     window.location.hash = active > 0 ? `/${idx2key[active]}` : "";
     setNavActive(active);
     setTimeout(() => (lock = false), duration);
