@@ -72,4 +72,18 @@
       width: 100%;
     }
   }
+
+  .wide-image-container.video {
+    width: 100%;
+    aspect-ratio: 16/9;
+
+    &:last-of-type {
+      margin-bottom: 2rem;
+    }
+
+    video {
+      display: block;
+      width: 100%;
+    }
+  }
 }

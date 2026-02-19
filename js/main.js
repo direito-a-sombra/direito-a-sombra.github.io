@@ -1,71 +1,91 @@
+const FORTALEZA_URL = "https://www.google.com/maps/place/Fortaleza+-+Ceará,+Brazil/@-3.7931394,-38.6020174,12z/";
+
 document.addEventListener("DOMContentLoaded", () => {
   // —— Slider (single-page panels) ——
   const page = document.getElementById("page");
   const panels = page && page.classList.contains("slider-page")
     ? Array.from(page.querySelectorAll(".panel"))
     : [];
-  const panelLinks = document.querySelectorAll(".js-panel-link");
+  const panelLinks = document.querySelectorAll(".nav-link");
+  const panelHome = document.getElementById("panel-home");
 
-  if (panels.length > 0) {
-    let active = 0;
-    let lock = false;
-    const duration = 650;
+  const key2idx = {};
+  const idx2key = {};
+  panelLinks.forEach(el => {
+    key2idx[el.dataset.panelLabel] = el.dataset.panelIndex;
+    idx2key[el.dataset.panelIndex] = el.dataset.panelLabel;
+  });
 
-    const setNavActive = (index) => {
-      panelLinks.forEach((link, i) => {
-        link.classList.toggle("opacity-sel", i === index);
-        if (i !== index) link.classList.add(`opacity-${Math.min(i, 6)}`);
-      });
-    };
+  let active = 0;
+  let activeKey = "home";
+  let lock = false;
+  const duration = 650;
 
-    const go = (index) => {
-      if (lock || index === active) return;
-      const next = Math.max(0, Math.min(index, panels.length - 1));
-      lock = true;
-      active = next;
-      page.style.transform = `translateX(-${active * 100}vw)`;
-      setNavActive(active);
-      setTimeout(() => (lock = false), duration);
-    };
-
-    page.addEventListener(
-      "wheel",
-      (e) => {
-        if (Math.abs(e.deltaX) <= Math.abs(e.deltaY) || Math.abs(e.deltaX) <= 6) return;
-        e.preventDefault();
-        if (e.deltaX > 0) go(active + 1);
-        else go(active - 1);
-      },
-      { passive: false }
-    );
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        go(active - 1);
-      } else if (e.key === "ArrowRight") {
-        e.preventDefault();
-        go(active + 1);
-      }
+  const setNavActive = (index) => {
+    panelLinks.forEach((link, i) => {
+      link.classList.toggle("opacity-sel", i === index);
+      if (i !== index) link.classList.add(`opacity-${Math.min(i, 6)}`);
     });
+  };
 
-    panelLinks.forEach((link) => {
-      link.addEventListener("click", (e) => {
-        e.preventDefault();
-        const idx = parseInt(link.dataset.panelIndex);
-        if (!isNaN(idx)) go(idx);
-      });
+  const highlightAndGo = (index) => {
+    if (lock || index === active) return;
+    if (index > 0) {
+      setDetail(idx2key[index]);
+      go(index);
+    } else {
+      clearDetail();
+      go(0);
+    }
+  };
+
+  const go = (index) => {
+    if (lock || index === active) return;
+    const next = Math.max(0, Math.min(index, panels.length - 1));
+    lock = true;
+    active = next;
+    page.style.transform = `translateX(-${active * 100}vw)`;
+    panelHome.style.left = `${active * 100}vw`;
+    window.location.hash = `/${idx2key[index]}`;
+    setNavActive(active);
+    setTimeout(() => (lock = false), duration);
+  };
+
+  page.addEventListener(
+    "wheel",
+    (e) => {
+      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY) || Math.abs(e.deltaX) <= 6) return;
+      e.preventDefault();
+      if (e.deltaX > 0) highlightAndGo(active + 1);
+      else highlightAndGo(active - 1);
+    },
+    { passive: false }
+  );
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      highlightAndGo(active - 1);
+    } else if (e.key === "ArrowRight") {
+      e.preventDefault();
+      highlightAndGo(active + 1);
+    }
+  });
+
+  panelLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const idx = parseInt(link.dataset.panelIndex);
+      if (!isNaN(idx)) highlightAndGo(idx);
     });
+  });
 
-    page.style.transition = `transform ${duration}ms ease`;
-    setNavActive(0);
-  }
+  page.style.transition = `transform ${duration}ms ease`;
+  setNavActive(0);
 
   // —— Shade text (home panel highlights) ——
   const text = document.getElementById("shade-text");
   if (!text) return;
-
-  let activeKey = null;
 
   const clearDetail = () => {
     document.body.classList.remove("detail-open");
@@ -77,6 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!key) return;
     if (activeKey === key && document.body.classList.contains("detail-open")) {
       clearDetail();
+      go(0);
       return;
     }
     document.querySelectorAll(".sentence.active").forEach((node) => node.classList.remove("active"));
@@ -84,6 +105,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (activeSentence) activeSentence.classList.add("active");
     activeKey = key;
     document.body.classList.add("detail-open");
+    if (key === "fortaleza") {
+      window.open(FORTALEZA_URL, "_blank", "noopener, noreferrer");
+    } else {
+      go(key2idx[key]);
+    }
   };
 
   text.addEventListener("click", (event) => {
@@ -92,7 +118,13 @@ document.addEventListener("DOMContentLoaded", () => {
     setDetail(trigger.getAttribute("data-key"));
   });
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") clearDetail();
-  });
+  if (window.location.hash) {
+    const hash = window.location.hash.replace(/[^a-zA-Z]/g, "").toLowerCase();
+    if (hash in key2idx) {
+      setDetail(hash);
+      go(key2idx[hash]);
+    } else {
+      window.location.hash = "";
+    }
+  }
 });
