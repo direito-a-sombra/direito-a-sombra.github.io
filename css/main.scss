@@ -17,7 +17,6 @@
   --color-hl-1: #4c7f2a;
   --color-hl-2: #222324;
   --color-hl-3: #929293;
-  --slide-transition: transform 650ms ease;
   --menu-height: 3rem;
   font-size: 15px;
 }
@@ -43,7 +42,6 @@ body.slider-body {
   display: flex;
   width: 700vw;
   will-change: transform;
-  transition: var(--slide-transition);
 }
 
 .slider-page .panel {
@@ -85,6 +83,12 @@ body.slider-body {
   text-align: center;
 }
 
+.text-nav .frame.hide {
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
 .text-nav .text {
   margin: 0;
   text-transform: uppercase;
@@ -94,7 +98,7 @@ body.slider-body {
   font-weight: 600;
   text-align: justify;
   max-width: 75%;
-  transition: opacity 400ms ease;
+  transition: opacity 50ms ease;
 }
 
 .text-nav .highlight {
@@ -116,7 +120,7 @@ body.slider-body {
 
 .text-nav .sentence {
   display: inline;
-  transition: opacity 400ms ease;
+  transition: opacity 50ms ease;
 
   button {
     pointer-events: auto;

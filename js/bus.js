@@ -230,6 +230,7 @@ function loadImages(stops) {
     itemEl.dataset.id = stop.id;
 
     const imgEl = createImageEl(stop);
+    if (idx < 24) imgEl.src = imgEl.dataset.src;
     itemEl.appendChild(imgEl);
     itemEl.addEventListener("click", handleImageClick);
 

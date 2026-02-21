@@ -86,6 +86,7 @@ function loadProcessImages(images) {
     itemEl.dataset.id = img.id;
 
     const imgEl = createProcessImageEl(img);
+    if (idx < 24) imgEl.src = imgEl.dataset.src;
     itemEl.appendChild(imgEl);
     itemEl.addEventListener("click", handleProcessImageClick);
 
